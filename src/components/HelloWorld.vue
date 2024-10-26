@@ -1,41 +1,34 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
-  </div>
+  <vega-form ref="formRef">
+    <vega-input required="true" data-vega-form="field_1"></vega-input>
+  </vega-form>
+  <vega-button @vegaClick="valid">Valid</vega-button>
+  <vega-button @vegaClick="reset">Reset</vega-button>
 </template>
 
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
-}
-</style>
+<script>
+import { VegaForm, VegaInput, VegaButton } from "@heartlandone/vega-vue";
+export default {
+  name: "SimpleComponent",
+  components: {
+    VegaButton,
+    VegaInput,
+    VegaForm,
+  },
+  data: function () {
+    return {
+      accordionTitle: "this is title",
+      emailValue: "",
+    };
+  },
+  created: function () {},
+  methods: {
+    valid() {
+      return this.$refs.formRef.$el.valid();
+    },
+    reset() {
+      return this.$refs.formRef.$el.reset();
+    },
+  },
+};
+</script>
